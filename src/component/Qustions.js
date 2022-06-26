@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import AnswerBox from "./AnswerBox";
-const ans = "correct";
+// const ans = "correct";
 const url = "https://jservice.io/api/random";
+
 const Qustions = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -12,11 +13,13 @@ const Qustions = () => {
       .catch();
   }, []);
 
-  console.log(data);
+  var { answer, question } = data.data[0];
+  // console.log(data.data[0].answer);
+
   return (
     <div className="Trivia_Questions">
-      <h1 className="question"> the quesiosn is what are you thinking </h1>
-      <AnswerBox ans={ans} />
+      <h1 className="question">Q. {question} ?</h1>
+      <AnswerBox ans={answer} />
     </div>
   );
 };
